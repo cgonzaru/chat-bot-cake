@@ -10,7 +10,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      cake: [
+      cake: []
+      /* cake: [
         'chesse cake',
         'latte coffe',
         'banana toffee',
@@ -18,20 +19,23 @@ class App extends React.Component {
         'chocolate muffin',
         'strawberry cookie',
         'carrot cake'
-      ]
+      ] */
     }
 
   }
 
   componentDidMount() {
-    /* fetch('https://xz94zfs6u8.execute-api.eu-west-1.amazonaws.com/default/myBakery')
+    fetch('https://xz94zfs6u8.execute-api.eu-west-1.amazonaws.com/default/myBakery', {mode: 'no-cors'})
       .then(response => response.json())
+      .catch(function(error) {  
+        console.log('Request failed', error)  
+      })
       .then(data => {
-        console.log(data)
-         this.setState({
+        console.log('data', data)
+        this.setState({
           cake: data
-        }) 
-      }) */
+        })
+      })
   }
 
   generateRandomNumber(max) {
@@ -39,8 +43,8 @@ class App extends React.Component {
   }
 
   render() {
-    let myRandomNumber = this.generateRandomNumber(6);
-    const result = this.state.cake[myRandomNumber];
+    /* let myRandomNumber = this.generateRandomNumber(6);
+    const result = this.state.cake[myRandomNumber]; */
     return (
       <div className="app">
         <header className="app-header">
@@ -52,15 +56,15 @@ class App extends React.Component {
             <div className="row">
               <div className="col s12">
                 <div className="carousel carousel-slider">
-                  <a href="#" className="carousel-item"><img src={chessecake} alt="chessecake"/></a>
-                  <a href="#" className="carousel-item"><img src={coffe} alt="coffe"/></a>
-                  <a href="#" className="carousel-item"><img src={banana} alt="banana"/></a>
+                  <a href="#" className="carousel-item"><img src={chessecake} alt="chessecake" /></a>
+                  <a href="#" className="carousel-item"><img src={coffe} alt="coffe" /></a>
+                  <a href="#" className="carousel-item"><img src={banana} alt="banana" /></a>
                 </div>
               </div>
             </div>
           </div>
           <ChatBot
-            result={result}
+            result={this.state.cake}
           />
         </main>
 
