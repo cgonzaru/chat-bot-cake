@@ -8,6 +8,7 @@ function CustomChatbot(props) {
 		floating: true
 	};
 
+	const { result } = props;
 	const steps = [
 		{
 			id: "Greet",
@@ -22,11 +23,11 @@ function CustomChatbot(props) {
 		{
 			id: "Waiting user input for name",
 			user: true,
-			trigger: "Asking options to eat"
+			trigger: "Tip of the day"
 		},
 		{
-			id: "Asking options to eat",
-			message: "Hi {previousValue}, Glad to know you !!",
+			id: "Tip of the day",
+			message: 'Hi {previousValue}, Our tip of the day is: ' + result,
 			trigger: "Done"
 		},
 		{
@@ -35,7 +36,7 @@ function CustomChatbot(props) {
 			end: true
 		}
 	];
-	return <ChatBot steps={steps} {...config}/>;
+	return <ChatBot steps={steps} {...config} />;
 }
 
 export default CustomChatbot;
